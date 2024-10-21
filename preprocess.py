@@ -42,7 +42,7 @@ def display_data (descriptor, dataset, extra_info):
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_columns', None)
 
-    print(f"\n{descriptor} Dataset Information\n{dataset}")
+    print(f"\n{descriptor} Dataset Information\n\n{dataset}")
 
     if extra_info:
-        print(f"\n{dataset.describe()}\n")
+        print(f"\nExtra Information on {descriptor} \n\n {dataset.describe()}\n")
