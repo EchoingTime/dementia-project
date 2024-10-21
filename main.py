@@ -9,5 +9,5 @@ Professor: Professor Wei
 Date: 2024-10-21
 """
 if __name__ == '__main__':
-    dataframe = preprocess.load_data("oasis_longitudinal_demographics.xlsx")
-    print(dataframe)
+    dataframe_oasis = preprocess.load_data("oasis_longitudinal_demographics.xlsx")
+    preprocess.display_data("Oasis Longitudinal Demographics", dataframe_oasis, True)

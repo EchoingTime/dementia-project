@@ -26,3 +26,23 @@ def load_data (file_name):
         return excel_dataframe
     except Exception as e:
         print(f"There was an error reading the file: {e}")
+
+# For displaying all rows and columns of the Dataset
+def display_data (descriptor, dataset, extra_info):
+    """
+    Accepts a pandas Dataframe and displays it in a formatted table.
+    Allows user to give a boolean on whether to show extra information after
+    the table is displayed with describe().
+    :param descriptor: Description of the data (header)
+    :param dataset: Dataset to be displayed, the pandas Dataframe
+    :param extra_info: Yes if user wishes to utilize describe(), no for exclude
+    :return: None
+    """
+    # To display every row and column in the console
+    pd.set_option('display.max_rows', None)
+    pd.set_option('display.max_columns', None)
+
+    print(f"\n{descriptor} Dataset Information\n{dataset}")
+
+    if extra_info:
+        print(f"\n{dataset.describe()}\n")
