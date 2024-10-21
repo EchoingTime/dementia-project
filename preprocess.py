@@ -21,5 +21,8 @@ def load_data (file_name):
     :param file_name: Name of the file
     :return: Pandas dataframe
     """
-    excel_dataframe = pd.read_excel (file_name)
-    return excel_dataframe
+    try: # Ensure file is correctly loaded
+        excel_dataframe = pd.read_excel (file_name)
+        return excel_dataframe
+    except Exception as e:
+        print(f"There was an error reading the file: {e}")

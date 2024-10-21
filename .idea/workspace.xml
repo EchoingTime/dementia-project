@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="" />
+    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="preprocess.py Added load_data (file_name) function">
+      <change afterPath="$PROJECT_DIR$/dementia_project/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dementia_project/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/dementia_project/preprocess.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "EchoingTime"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/EchoingTime/dementia-project.git",
+    "accountId": "3f2a34d1-63e1-416b-811c-26a04303c18e"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 8
 }]]></component>
@@ -21,14 +46,26 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.main.executor": "Run",
+    "Python.main.py.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/dante_anz/PycharmProjects/dementia-project/dementia_project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dementia_project" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="main.py" type="PythonConfigurationType" factoryName="Python">
       <module name="dementia-project" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -68,11 +105,44 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729529015940</updated>
-      <workItem from="1729529018107" duration="10000" />
+      <workItem from="1729529018107" duration="3233000" />
     </task>
+    <task id="LOCAL-00001" summary="__init__.py Update">
+      <option name="closed" value="true" />
+      <created>1729529589283</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729529589283</updated>
+    </task>
+    <task id="LOCAL-00002" summary="__init__.py Update">
+      <option name="closed" value="true" />
+      <created>1729529665919</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729529665919</updated>
+    </task>
+    <task id="LOCAL-00003" summary="preprocess.py Added load_data (file_name) function">
+      <option name="closed" value="true" />
+      <created>1729533048604</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729533048604</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="__init__.py Update" />
+    <MESSAGE value="preprocess.py Added load_data (file_name) function" />
+    <option name="LAST_COMMIT_MESSAGE" value="preprocess.py Added load_data (file_name) function" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/dementia_project$main.coverage" NAME="main.py Coverage Results" MODIFIED="1729533799589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
