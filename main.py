@@ -40,9 +40,11 @@ if __name__ == '__main__':
     p.display_histogram(dataframe_predictions, "Predictions - MMSE Scores", 'MMSE')
     """
     # Displaying Initial Datasets
-    p.display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, False, True)
-    p.display_data("Initial Predictions", dataframe_predictions, False, False)
+    p.display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, True, False)
+    p.display_data("Initial Predictions", dataframe_predictions, True, False)
 
+    # Displaying Modified Dataset | Oasis thus far
+    p.display_data("Modified Oasis Longitudinal Demographics", dataframe_oasis_modified, True, False)
     """
     # Creating Sample Datasets
     sample_size_oasis = math.ceil(dataframe_oasis_modified.shape[0] * 0.01)
