@@ -1,5 +1,4 @@
 import preprocess
-
 """
 Used to run project's programs
 
@@ -13,6 +12,9 @@ if __name__ == '__main__':
     dataframe_oasis = preprocess.load_data("oasis_longitudinal_demographics.xlsx")
     dataframe_predictions = preprocess.load_data("Predictions.xlsx")
 
+    # Replacing NaN Rows with Mean
+    dataframe_oasis_modified = preprocess.drop_nan_rows(dataframe_oasis)
+
     # Displaying Datasets
-    preprocess.display_data("Oasis Longitudinal Demographics", dataframe_oasis, True)
-    preprocess.display_data("Predictions", dataframe_predictions, True)
+    preprocess.display_data("Oasis Longitudinal Demographics", dataframe_oasis_modified, True)
+    # preprocess.display_data("Predictions", dataframe_predictions, True)

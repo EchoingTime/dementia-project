@@ -1,7 +1,7 @@
 """
 Phase One: The preprocessing of the datasets
 
-Handling, for data cleaning, missing data, duplicated data, outliers, and zeros.
+Data Cleaning: Handling missing data, duplicated data, outliers, and zeros.
 
 Will use processing techniques for scaling normalization (standardization and normalization)
 and sampling (random sampling)
@@ -45,4 +45,16 @@ def display_data (descriptor, dataset, extra_info):
     print(f"\n{descriptor} Dataset Information\n\n{dataset}")
 
     if extra_info:
-        print(f"\nExtra Information on {descriptor} \n\n {dataset.describe()}\n")
+        print(f"\nExtra Information on {descriptor} \n\n {dataset.describe()}\n\n(Rows, Columns) = {dataset.shape}\n")
+
+
+def drop_nan_rows (dataset):
+    """
+    Accepts a pandas Dataframe and removes rows with NaN values.
+    :param dataset: Initial Dataset with missing NaN values
+    :return: Modified Dataset with NaN values and their respective rows dropped
+    """
+    data_copy = dataset.copy() # Generates a new Dataset
+    # axis = 0 means wanting to drop rows (axis = 1 is for columns)
+    # how = 'any' means drop the row if it contains any NaN values ('all' means drop rows where all values are NaN)
+    return data_copy.dropna(axis = 0, how = 'any')
