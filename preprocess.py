@@ -127,3 +127,17 @@ def display_histogram (dataset, title_header, column):
     plt.xlabel(column)
     plt.ylabel("Frequency")
     plt.show()
+
+
+# Random Sampling without replacement
+def sample_without_replacement (dataset, sample):
+    """
+    Accepts a pandas Dataframe and samples data without replacement.
+    :param dataset: pandas Dataframe
+    :param sample: Number of rows to be sampled
+    :return: The sampled pandas Dataframe
+    """
+    data_copy = dataset.copy()
+    # frac = Number of rows to be sampled, prevents rows to be selected more than once, and sample along rows
+    data_copy = data_copy.sample(n = sample, replace = False, axis = 0)
+    return data_copy

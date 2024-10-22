@@ -1,4 +1,5 @@
 import preprocess as p
+import math
 """
 Used to run project's programs
 
@@ -38,6 +39,19 @@ if __name__ == '__main__':
     
     p.display_histogram(dataframe_predictions, "Predictions - MMSE Scores", 'MMSE')
     """
-    # Displaying Datasets
-    p.display_data("Oasis Longitudinal Demographics", dataframe_oasis_modified, False, False)
-    p.display_data("Predictions", dataframe_predictions, False, True)
+    # Displaying Initial Datasets
+    p.display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, False, True)
+    p.display_data("Initial Predictions", dataframe_predictions, False, False)
+
+    """
+    # Creating Sample Datasets
+    sample_size_oasis = math.ceil(dataframe_oasis_modified.shape[0] * 0.01)
+    sample_size_predictions = math.ceil(dataframe_predictions.shape[0] * 0.01)
+
+    sample_oasis = p.sample_without_replacement(dataframe_oasis_modified, sample_size_oasis)
+    sample_predictions = p.sample_without_replacement(dataframe_predictions, sample_size_predictions)
+
+    # Displaying Sample Datasets
+    p.display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, False, True)
+    p.display_data("Sample of Predictions", sample_predictions, False, False)
+    """
