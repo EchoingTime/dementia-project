@@ -27,6 +27,7 @@ def load_data (file_name):
     except Exception as e:
         print(f"There was an error reading the file: {e}")
 
+
 # For displaying all rows and columns of the Dataset
 def display_data (descriptor, dataset, extra_info):
     """
@@ -48,6 +49,36 @@ def display_data (descriptor, dataset, extra_info):
         print(f"\nExtra Information on {descriptor} \n\n {dataset.describe()}\n\n(Rows, Columns) = {dataset.shape}\n")
 
 
+def count_nan (dataset):
+    """
+    Accepts a pandas Dataframe and counts NaN values for each column
+    :param dataset: pandas Dataframe
+    :return: Returns the number of NaN values for each column
+    """
+    return dataset.isnull().sum()
+
+
+# (Not Utilized) Dealing with missing values
+def replace_nan_with_median (dataset, column):
+    """
+    Accepts a pandas Dataframe and replaces NaN values with median correlating
+    to the specific column.
+    :param dataset: pandas Dataframe
+    :param column: Name of the column which contains the NaN values
+    :return: Modified pandas Dataframe with median values for each NaN
+    """
+    data_copy = dataset.copy() # Good practice
+
+    # Convertion to numeric (values are currently a type string)
+    data_copy[column] = pd.to_numeric(data_copy[column], errors = 'coerce')
+    # Will replace NaN values with the median of column values
+    data_copy[column] = data_copy[column].fillna(data_copy[column].median())
+
+    return data_copy
+
+
+# (Utilized) Dealing with missing values
+# Used due to the sensitivity of dataset, SES and MMSE
 def drop_nan_rows (dataset):
     """
     Accepts a pandas Dataframe and removes rows with NaN values.
