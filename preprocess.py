@@ -49,6 +49,7 @@ def display_data (descriptor, dataset, extra_info):
         print(f"\nExtra Information on {descriptor} \n\n {dataset.describe()}\n\n(Rows, Columns) = {dataset.shape}\n")
 
 
+# Useful to see where the NaN values are in what column
 def count_nan (dataset):
     """
     Accepts a pandas Dataframe and counts NaN values for each column
@@ -89,3 +90,15 @@ def drop_nan_rows (dataset):
     # axis = 0 means wanting to drop rows (axis = 1 is for columns)
     # how = 'any' means drop the row if it contains any NaN values ('all' means drop rows where all values are NaN)
     return data_copy.dropna(axis = 0, how = 'any')
+
+
+# Dealing with potential duplicates
+# Used the following function to count duplicated rows and concluded that the
+# dataset does not need modifying as there are no duplicated rows.
+def count_duplicated_rows (dataset):
+    """
+    Accepts a pandas Dataframe and counts duplicated rows.
+    :param dataset: pandas Dataframe
+    :return: Sum of duplicated rows
+    """
+    return dataset.duplicated().sum()
