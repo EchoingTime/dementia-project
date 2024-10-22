@@ -18,13 +18,16 @@ if __name__ == '__main__':
     dataframe_oasis_modified = p.drop_nan_rows(dataframe_oasis)
     # No NaNs in Predictions Dataset
 
-    # Dropping Duplicated Rows | No Duplicated Rows
-    # print(p.count_duplicated_rows(dataframe_oasis_modified))
-    # print(p.count_duplicated_rows(dataframe_predictions))
+    # Dropping Duplicated Rows
+    print(p.count_duplicated_rows(dataframe_oasis_modified))
+    print(p.count_duplicated_rows(dataframe_predictions))
+
+    dataframe_oasis_modified = p.drop_duplicates(dataframe_oasis_modified)
+    dataframe_predictions_modified = p.drop_duplicates(dataframe_predictions)
 
     # Dealing with Outliers
     # Question to consider: Does the Dataset have outliers worth removing?
-    # Visualization
+    """# Visualization
     p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Visits", 'Visit')
     p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - MR Delays", 'MR Delay')
     p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Age Ranges", 'Age')
@@ -37,22 +40,23 @@ if __name__ == '__main__':
     p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - nWBV Scores", 'nWBV')
     p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - ASF Scores", 'ASF')
     
-    p.display_histogram(dataframe_predictions, "Predictions - MMSE Scores", 'MMSE')
+    p.display_histogram(dataframe_predictions_modified, "Predictions - MMSE Scores", 'MMSE')"""
 
     # Displaying Initial Datasets
     p.display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, False, False)
     p.display_data("Initial Predictions", dataframe_predictions, False, False)
 
-    # Displaying Modified Dataset | Oasis thus far
+    # Displaying Modified Dataset
     p.display_data("Modified Oasis Longitudinal Demographics", dataframe_oasis_modified, False, False)
+    p.display_data("Modified Predictions", dataframe_predictions_modified, False, False)
 
     # Creating Sample Datasets
     sample_size_oasis = math.ceil(dataframe_oasis_modified.shape[0] * 0.25)
     sample_size_predictions = math.ceil(dataframe_predictions.shape[0] * 0.25)
 
     sample_oasis = p.sample_without_replacement(dataframe_oasis_modified, sample_size_oasis)
-    sample_predictions = p.sample_without_replacement(dataframe_predictions, sample_size_predictions)
+    sample_predictions = p.sample_without_replacement(dataframe_predictions_modified, sample_size_predictions)
 
     # Displaying Sample Datasets
-    p.display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, True, False)
-    p.display_data("Sample of Predictions", sample_predictions, True, False)
+    p.display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, False, False)
+    p.display_data("Sample of Predictions", sample_predictions, False, False)

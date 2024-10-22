@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="preprocess.py Added load_data (file_name) function">
-      <change afterPath="$PROJECT_DIR$/dementia_project/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dementia_project/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/dementia_project/preprocess.py" afterDir="false" />
+    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="main.py modifications (removing quotations)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,44 +24,52 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "EchoingTime"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EchoingTime&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/EchoingTime/dementia-project.git",
-    "accountId": "3f2a34d1-63e1-416b-811c-26a04303c18e"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EchoingTime/dementia-project.git&quot;,
+    &quot;accountId&quot;: &quot;3f2a34d1-63e1-416b-811c-26a04303c18e&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2nktgpDjfOlBr276A98cVUg2uyS" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "Python.main.py.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/dante_anz/PycharmProjects/dementia-project/dementia_project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.py.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dante_anz/PycharmProjects/dementia-project/dementia_project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dementia_project" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/dementia_project" />
     </key>
   </component>
@@ -106,6 +115,8 @@
       <option name="presentableId" value="Default" />
       <updated>1729529015940</updated>
       <workItem from="1729529018107" duration="3233000" />
+      <workItem from="1729533898961" duration="18402000" />
+      <workItem from="1729638524767" duration="879000" />
     </task>
     <task id="LOCAL-00001" summary="__init__.py Update">
       <option name="closed" value="true" />
@@ -131,7 +142,103 @@
       <option name="project" value="LOCAL" />
       <updated>1729533048604</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Removed dementia_project package due to errors with reading excel files. Moving main.py, preprocess.py, __init__.py, and xlsx files out of package and directly under project directory. Installed openpyxl package in project interpreter.">
+      <option name="closed" value="true" />
+      <created>1729536310025</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729536310025</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added display_data (descriptor, dataset, extra_info) function in preprocess.py">
+      <option name="closed" value="true" />
+      <created>1729541881883</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729541881883</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added Predictions Dataset to be loaded and displayed">
+      <option name="closed" value="true" />
+      <created>1729542692967</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729542692967</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Some format Updates">
+      <option name="closed" value="true" />
+      <created>1729542868076</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1729542868076</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added drop_nan_rows (dataset) function">
+      <option name="closed" value="true" />
+      <created>1729576431829</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729576431829</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added replace_nan_with_median (dataset, column) function. However, not utilizing">
+      <option name="closed" value="true" />
+      <created>1729578355657</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1729578355657</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added count_duplicated_rows function. No duplicated rows in both datasets">
+      <option name="closed" value="true" />
+      <created>1729579149338</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1729579149338</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Working on Outliers">
+      <option name="closed" value="true" />
+      <created>1729608761671</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1729608761671</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added display_histogram function. Do we have outliers worth removing?">
+      <option name="closed" value="true" />
+      <created>1729612846638</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729612846638</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added sample_without_replacement (dataset, sample) function">
+      <option name="closed" value="true" />
+      <created>1729614015723</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1729614015723</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added statement in main.py to view modified Oasis dataset">
+      <option name="closed" value="true" />
+      <created>1729614445542</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1729614445542</updated>
+    </task>
+    <task id="LOCAL-00015" summary="main.py modifications (removing quotations)">
+      <option name="closed" value="true" />
+      <created>1729638280288</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1729638280288</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,9 +247,22 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="__init__.py Update" />
     <MESSAGE value="preprocess.py Added load_data (file_name) function" />
-    <option name="LAST_COMMIT_MESSAGE" value="preprocess.py Added load_data (file_name) function" />
+    <MESSAGE value="Removed dementia_project package due to errors with reading excel files. Moving main.py, preprocess.py, __init__.py, and xlsx files out of package and directly under project directory. Installed openpyxl package in project interpreter." />
+    <MESSAGE value="Added display_data (descriptor, dataset, extra_info) function in preprocess.py" />
+    <MESSAGE value="Added Predictions Dataset to be loaded and displayed" />
+    <MESSAGE value="Some format Updates" />
+    <MESSAGE value="Added drop_nan_rows (dataset) function" />
+    <MESSAGE value="Added replace_nan_with_median (dataset, column) function. However, not utilizing" />
+    <MESSAGE value="Added count_duplicated_rows function. No duplicated rows in both datasets" />
+    <MESSAGE value="Working on Outliers" />
+    <MESSAGE value="Added display_histogram function. Do we have outliers worth removing?" />
+    <MESSAGE value="Added sample_without_replacement (dataset, sample) function" />
+    <MESSAGE value="Added statement in main.py to view modified Oasis dataset" />
+    <MESSAGE value="main.py modifications (removing quotations)" />
+    <option name="LAST_COMMIT_MESSAGE" value="main.py modifications (removing quotations)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dementia_project$main.coverage" NAME="main.py Coverage Results" MODIFIED="1729533799589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/dementia_project$main_py.coverage" NAME="main.py Coverage Results" MODIFIED="1729639359211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

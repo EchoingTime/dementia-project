@@ -97,8 +97,7 @@ def drop_nan_rows (dataset):
 
 
 # Dealing with potential duplicates
-# Used the following function to count duplicated rows and concluded that the
-# dataset does not need modifying as there are no duplicated rows.
+# Used the following function to count duplicated rows
 def count_duplicated_rows (dataset):
     """
     Accepts a pandas Dataframe and counts duplicated rows.
@@ -106,6 +105,17 @@ def count_duplicated_rows (dataset):
     :return: Sum of duplicated rows
     """
     return dataset.duplicated().sum()
+
+
+# Insuring that the data is clean
+def drop_duplicates (dataset):
+    """
+    Accepts a pandas Dataframe and removes duplicated rows.
+    :param dataset: pandas Dataframe
+    :return: Modified Dataset without duplicated rows
+    """
+    data_copy = dataset.copy()
+    return data_copy.drop_duplicates()
 
 
 # Dealing with outliers
