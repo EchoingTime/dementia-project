@@ -22,7 +22,22 @@ if __name__ == '__main__':
     # print(p.count_duplicated_rows(dataframe_predictions))
 
     # Dealing with Outliers
-
+    # Question to consider: Does the Dataset have outliers worth removing?
+    # Visualization
+    """
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - MMSE Scores", 'MMSE')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Visits", 'Visit')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - MR Delays", 'MR Delay')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Age Ranges", 'Age')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - EDUC Scores", 'EDUC')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - SES Scores", 'SES')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - CDR Scores", 'CDR')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - eTIV Scores", 'eTIV')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - nWBV Scores", 'nWBV')
+    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - ASF Scores", 'ASF')
+    
+    p.display_histogram(dataframe_predictions, "Predictions - MMSE Scores", 'MMSE')
+    """
     # Displaying Datasets
-    p.display_data("Oasis Longitudinal Demographics", dataframe_oasis_modified, False, True)
+    p.display_data("Oasis Longitudinal Demographics", dataframe_oasis_modified, False, False)
     p.display_data("Predictions", dataframe_predictions, False, True)

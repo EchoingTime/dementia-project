@@ -13,6 +13,8 @@ Date: 2024-10-21
 """
 # Importing libraries
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Importing Dataset via utilizing read_excel
 def load_data (file_name):
@@ -107,3 +109,21 @@ def count_duplicated_rows (dataset):
 
 
 # Dealing with outliers
+# First step: Visualization of Dataset using a Histogram
+# Outliers may have clinical relevance... e.g., severity in poor MMSE scores
+def display_histogram (dataset, title_header, column):
+    """
+    Accepts a pandas Dataframe and plots a histogram of the frequency of different
+    data.
+    :param dataset: pandas Dataframe
+    :param title_header: Title of the plot
+    :param column: Which column to focus on
+    :return: None
+    """
+    bin_size = int(np.ceil(np.sqrt(dataset.shape[0])))
+
+    plt.hist(dataset[column], bins = bin_size)
+    plt.title("Histogram of " + title_header)
+    plt.xlabel(column)
+    plt.ylabel("Frequency")
+    plt.show()
