@@ -29,13 +29,14 @@ def load_data (file_name):
 
 
 # For displaying all rows and columns of the Dataset
-def display_data (descriptor, dataset, extra_info):
+def display_data (descriptor, dataset, display, extra_info):
     """
     Accepts a pandas Dataframe and displays it in a formatted table.
     Allows user to give a boolean on whether to show extra information after
     the table is displayed with describe().
     :param descriptor: Description of the data (header)
     :param dataset: Dataset to be displayed, the pandas Dataframe
+    :param display: Boolean on whether to display information excluding extra information
     :param extra_info: Yes if user wishes to utilize describe(), no for exclude
     :return: None
     """
@@ -43,7 +44,8 @@ def display_data (descriptor, dataset, extra_info):
     pd.set_option('display.max_rows', None)
     pd.set_option('display.max_columns', None)
 
-    print(f"\n{descriptor} Dataset Information\n\n{dataset}")
+    if display:
+        print(f"\n{descriptor} Dataset Information\n\n{dataset}")
 
     if extra_info:
         print(f"\nExtra Information on {descriptor} \n\n {dataset.describe()}\n\n(Rows, Columns) = {dataset.shape}\n")
@@ -102,3 +104,6 @@ def count_duplicated_rows (dataset):
     :return: Sum of duplicated rows
     """
     return dataset.duplicated().sum()
+
+
+# Dealing with outliers
