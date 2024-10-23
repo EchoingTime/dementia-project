@@ -1,6 +1,13 @@
-
 import sklearn.preprocessing as sk
 
+"""
+Processing technique: Scaling Normalization 
+
+Programmed By: Dante Anzalone, Dustin McDonnell, and Leidy Rojas Huisa
+Course: CSCI 4105: Knowledge Discovery and Data Mining
+Professor: Professor Wei
+Date: 2024-10-22
+"""
 
 def min_max(data):
     scaler = sk.MinMaxScaler()

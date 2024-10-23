@@ -1,3 +1,7 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
 """
 Phase One: The preprocessing of the datasets
 
@@ -10,10 +14,6 @@ Course: CSCI 4105: Knowledge Discovery and Data Mining
 Professor: Professor Wei
 Date: 2024-10-21
 """
-# Importing libraries
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
 
 # Importing Dataset via utilizing read_excel
 def load_data (file_name):

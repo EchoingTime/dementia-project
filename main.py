@@ -1,6 +1,7 @@
 import preprocess as p
 import normalization as norm
 import math
+
 """
 Used to run project's programs
 
@@ -9,6 +10,7 @@ Course: CSCI 4105: Knowledge Discovery and Data Mining
 Professor: Professor Wei
 Date: 2024-10-21
 """
+
 if __name__ == '__main__':
     # Oasis Longitudinal Demographics and Predictions Datasets
     dataframe_oasis = p.load_data("oasis_longitudinal_demographics.xlsx")
