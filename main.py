@@ -68,15 +68,15 @@ if __name__ == '__main__':
     p.display_data("Modified Predictions", dataframe_predictions_modified, False, False)
 
     # Creating Sample Datasets
-    sample_size_oasis = math.ceil(dataframe_oasis_modified.shape[0] * 0.25)
-    sample_size_predictions = math.ceil(dataframe_predictions.shape[0] * 0.25)
+    sample_size_oasis = math.ceil(dataframe_oasis_modified.shape[0] * 0.1)
+    sample_size_predictions = math.ceil(dataframe_predictions.shape[0] * 0.1)
 
     sample_oasis = p.sample_without_replacement(dataframe_oasis_modified, sample_size_oasis)
     sample_predictions = p.sample_without_replacement(dataframe_predictions_modified, sample_size_predictions)
 
     # Displaying Sample Datasets
-    p.display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, False, False)
-    p.display_data("Sample of Predictions", sample_predictions, False, False)
+    p.display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, True, False)
+    p.display_data("Sample of Predictions", sample_predictions, True, False)
 
     # Normalization of data
     # norm.run(dataframe_oasis_modified)
