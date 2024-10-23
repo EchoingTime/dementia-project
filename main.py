@@ -1,5 +1,7 @@
 import preprocess as p
+import normalization as norm
 import math
+
 """
 Used to run project's programs
 
@@ -60,3 +62,7 @@ if __name__ == '__main__':
     # Displaying Sample Datasets
     p.display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, False, False)
     p.display_data("Sample of Predictions", sample_predictions, False, False)
+
+    # Normalization of data
+    norm.run(dataframe_oasis_modified)
+    norm.run(dataframe_predictions_modified)
