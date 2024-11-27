@@ -54,7 +54,18 @@ def display_data (descriptor, dataset, display, extra_info):
 
 
 def drop_column (dataset, column):
-    pass
+    """
+    Accepts a pandas Dataframe and removes the specified column from the dataset.
+    :param dataset: Dataset to be modified
+    :param column: Dataset's column to be removed
+    :return: Modified dataset/Dataframe
+    """
+    data_copy = dataset.copy()  # Good practice
+
+    # Pandas method: column to remove, axis = 1 specifies column, and inplace meaning modifying DataFrame directly
+    data_copy.drop(column, axis = 1, inplace = True)
+
+    return data_copy
 
 
 # Useful to see where the NaN values are in what column
@@ -162,24 +173,27 @@ def run ():
     dataframe_oasis = load_data("oasis_longitudinal_demographics.xlsx")
     dataframe_predictions = load_data("Predictions.xlsx")
 
+    # Dropping columns not useful to our study: Subject ID and MRI ID in Oasis Longitudinal Demographics dataset and Subject ID in Predictions dataset
+    dataframe_oasis_modified = drop_column(dataframe_oasis, "Subject ID")
+    dataframe_oasis_modified = drop_column(dataframe_oasis_modified, "MRI ID")
+    dataframe_predictions_modified = drop_column(dataframe_predictions, "Subject ID")
+
     # Dropping NaN Rows: SES column had 19 NaN values and MMSE had 2
     print(f"Before Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis)}\n")
     print(f"Before Drop: Number of NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions)}\n")
 
     # Note on Oasis: Went from 373 initial rows to 354 rows after drop
-    dataframe_oasis_modified = drop_nan_rows(dataframe_oasis)
+    dataframe_oasis_modified = drop_nan_rows(dataframe_oasis_modified)
 
-    print(
-        f"After Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis_modified)}\n")
+    print(f"After Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis_modified)}\n")
     # No NaNs in Predictions Dataset
 
     # Dropping Duplicated Rows
-    print(
-        f"Number of Duplicated Rows in Oasis Longitudinal Demographics Dataset: {count_duplicated_rows(dataframe_oasis_modified)}\n")
-    print(f"Number of Duplicated Rows in Predictions Dataset: {count_duplicated_rows(dataframe_predictions)}\n")
+    print(f"Number of Duplicated Rows in Oasis Longitudinal Demographics Dataset: {count_duplicated_rows(dataframe_oasis_modified)}\n")
+    print(f"Number of Duplicated Rows in Predictions Dataset: {count_duplicated_rows(dataframe_predictions_modified)}\n")
 
     dataframe_oasis_modified = drop_duplicates(dataframe_oasis_modified)
-    dataframe_predictions_modified = drop_duplicates(dataframe_predictions)
+    dataframe_predictions_modified = drop_duplicates(dataframe_predictions_modified)
 
     # Dealing with Outliers
     # Question to consider: Does the Dataset have outliers worth removing?
@@ -212,8 +226,8 @@ def run ():
     display_data("Initial Predictions", dataframe_predictions, False, False)
 
     # Displaying Modified Dataset
-    display_data("Modified Oasis Longitudinal Demographics", dataframe_oasis_modified, False, False)
-    display_data("Modified Predictions", dataframe_predictions_modified, False, False)
+    display_data("Modified Oasis Longitudinal Demographics", dataframe_oasis_modified, True, True)
+    display_data("Modified Predictions", dataframe_predictions_modified, True, True)
 
     # Creating Sample Datasets
     sample_size_oasis = math.ceil(dataframe_oasis_modified.shape[0] * 0.05)
@@ -223,7 +237,7 @@ def run ():
     sample_predictions = sample_without_replacement(dataframe_predictions_modified, sample_size_predictions)
 
     # Displaying Sample Datasets
-    display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, True, False)
-    display_data("Sample of Predictions", sample_predictions, True, False)
+    display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, False, False)
+    display_data("Sample of Predictions", sample_predictions, False, False)
 
     return dataframe_oasis_modified, dataframe_predictions_modified
