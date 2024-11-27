@@ -173,10 +173,42 @@ def run ():
     dataframe_oasis = load_data("oasis_longitudinal_demographics.xlsx")
     dataframe_predictions = load_data("Predictions.xlsx")
 
-    # Dropping columns not useful to our study: Subject ID and MRI ID in Oasis Longitudinal Demographics dataset and Subject ID in Predictions dataset
+    # Dropping columns not useful to our study: Subject ID, MRI ID, and Hand in Oasis Longitudinal Demographics dataset and Subject ID in Predictions dataset
     dataframe_oasis_modified = drop_column(dataframe_oasis, "Subject ID")
     dataframe_oasis_modified = drop_column(dataframe_oasis_modified, "MRI ID")
+    dataframe_oasis_modified = drop_column(dataframe_oasis_modified, "Hand")
     dataframe_predictions_modified = drop_column(dataframe_predictions, "Subject ID")
+
+    # Handling future error given: Set option to opt into the new replace behavior
+    pd.set_option('future.no_silent_downcasting', True)
+
+    # Converting categorical columns to numerical
+    #   Oasis Longitudinal Demographics Dataset
+    #       Group Column --> New Representations
+    #               Nondemented         2
+    #               Demented            1
+    #               Converted           0
+    #       M/F
+    #               M (Male)            1
+    #               F (Female)          0
+    #   Predictions Dataset
+    #       Group
+    #               Nondemented         2
+    #               Demented            1
+    #               Converted           0
+    #       M/F
+    #               M (Male)            1
+    #               F (Female)          0
+    #       prediction(Group)
+    #               Nondemented         2
+    #               Demented            1
+    #               Converted           0
+    dataframe_oasis_modified['Group'] = dataframe_oasis_modified['Group'].replace({'Nondemented': 2, 'Demented': 1, 'Converted': 0})
+    dataframe_oasis_modified['M/F'] = dataframe_oasis_modified['Group'].replace({'M': 1, 'F': 0})
+    dataframe_predictions_modified['Group'] = dataframe_predictions_modified['Group'].replace({'Nondemented': 2, 'Demented': 1, 'Converted': 0})
+    dataframe_predictions_modified['prediction(Group)'] = dataframe_predictions_modified['prediction(Group)'].replace({'Nondemented': 2, 'Demented': 1, 'Converted': 0})
+    dataframe_predictions_modified['M/F'] = dataframe_predictions_modified['Group'].replace({'M': 1, 'F': 0})
+
 
     # Dropping NaN Rows: SES column had 19 NaN values and MMSE had 2
     print(f"Before Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis)}\n")
