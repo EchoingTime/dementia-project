@@ -14,6 +14,6 @@ if __name__ == '__main__':
     # Data Cleaning and Preprocessing of data
     dataframe_oasis_modified, dataframe_predictions_modified = p.run()
 
-    # Normalization of data
-    # norm.run(dataframe_oasis_modified)
-    # norm.run(dataframe_predictions_modified)
+    # Normalization of data (Need Updating Here and documents for Phase Three)
+    norm.run(dataframe_oasis_modified)
+    norm.run(dataframe_predictions_modified)
