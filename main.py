@@ -16,13 +16,8 @@ if __name__ == '__main__':
     # Data Cleaning and Preprocessing of data
     dataframe_oasis_modified, dataframe_predictions_modified = p.run()
 
-    # Normalization of data (Need Updating Here and documents for Phase Three)
-    # oasis_normalized = norm.run(dataframe_oasis_modified)
-    # predictions_normalized = norm.run(dataframe_predictions_modified)
-
     # Normalization
-    oasis_normalized = norm.standard_scale(dataframe_oasis_modified.select_dtypes(include='number').to_numpy())
-    predictions_normalized = norm.standard_scale(dataframe_predictions_modified.select_dtypes(include='number').to_numpy())
+    oasis_normalized, predictions_normalized = norm.run(dataframe_oasis_modified, dataframe_predictions_modified)
 
     # Verifying column names
     print("Columns in dataframe_oasis_modified:", dataframe_oasis_modified.columns)
