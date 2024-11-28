@@ -209,49 +209,57 @@ def run ():
     dataframe_predictions_modified['prediction(Group)'] = dataframe_predictions_modified['prediction(Group)'].replace({'Nondemented': 2, 'Demented': 1, 'Converted': 0})
     dataframe_predictions_modified['M/F'] = dataframe_predictions_modified['Group'].replace({'M': 1, 'F': 0})
 
-
     # Dropping NaN Rows: SES column had 19 NaN values and MMSE had 2
-    print(f"Before Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis)}\n")
-    print(f"Before Drop: Number of NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions)}\n")
+    print(f"Before NaN Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis)}\n")
+    print(f"Before NaN Drop: Number of NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions)}\n")
 
     # Note on Oasis: Went from 373 initial rows to 354 rows after drop
     dataframe_oasis_modified = drop_nan_rows(dataframe_oasis_modified)
 
-    print(f"After Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis_modified)}\n")
+    print(f"After NaN Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis_modified)}\n"
+          f"\nNo NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions_modified)}\n")
     # No NaNs in Predictions Dataset
 
     # Dropping Duplicated Rows
-    print(f"Number of Duplicated Rows in Oasis Longitudinal Demographics Dataset: {count_duplicated_rows(dataframe_oasis_modified)}\n")
-    print(f"Number of Duplicated Rows in Predictions Dataset: {count_duplicated_rows(dataframe_predictions_modified)}\n")
+    print(f"Before Duplication Drop: Number of Duplicated Rows in Oasis Longitudinal Demographics Dataset: {count_duplicated_rows(dataframe_oasis_modified)}\n")
+    print(f"Before Duplication Drop: Number of Duplicated Rows in Predictions Dataset: {count_duplicated_rows(dataframe_predictions_modified)}\n")
 
     dataframe_oasis_modified = drop_duplicates(dataframe_oasis_modified)
     dataframe_predictions_modified = drop_duplicates(dataframe_predictions_modified)
+
+    print(f"After Duplication Drop: No Duplications in Oasis Longitudinal Demographics Dataset: {count_duplicated_rows(dataframe_oasis_modified)}\n"
+          f"\nNumber of Duplicated Rows in Predictions Dataset: {count_duplicated_rows(dataframe_predictions_modified)}\n")
 
     # Dealing with Outliers
     # Question to consider: Does the Dataset have outliers worth removing?
     # Visualization
     """
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Visits", 'Visit')
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - MR Delays", 'MR Delay')
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Age Ranges", 'Age')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Groups", 'Group')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Visits", 'Visit')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - MR Delays", 'MR Delay')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Male Vs Female", 'M/F')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - Age Ranges", 'Age')
 
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - EDUC Scores", 'EDUC')
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - SES Scores", 'SES')
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - MMSE Scores", 'MMSE')
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - CDR Scores", 'CDR')
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - eTIV Scores", 'eTIV')
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - nWBV Scores", 'nWBV')
-    p.display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - ASF Scores", 'ASF')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - EDUC Scores", 'EDUC')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - SES Scores", 'SES')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - MMSE Scores", 'MMSE')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - CDR Scores", 'CDR')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - eTIV Scores", 'eTIV')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - nWBV Scores", 'nWBV')
+    display_histogram(dataframe_oasis_modified, "Oasis Longitudinal Demographics - ASF Scores", 'ASF')
 
-    p.display_histogram(dataframe_predictions_modified, "Predictions - Ages", 'Age')
-    p.display_histogram(dataframe_predictions_modified, "Predictions - CDR Scores", 'CDR')
-    p.display_histogram(dataframe_predictions_modified, "Predictions - MMSE Scores", 'MMSE')
-    p.display_histogram(dataframe_predictions_modified, "Predictions - MR Delay", 'MR Delay')
-    p.display_histogram(dataframe_predictions_modified, "Predictions - SES", 'SES')
-    p.display_histogram(dataframe_predictions_modified, "Predictions - Visits", 'Visit')
-    p.display_histogram(dataframe_predictions_modified, "Predictions - Nondemented Confidence", 'confidence(Nondemented)')
-    p.display_histogram(dataframe_predictions_modified, "Predictions - Demented Confidence", 'confidence(Demented)')
-    p.display_histogram(dataframe_predictions_modified, "Predictions - Converted Confidence", 'confidence(Converted)')
+    display_histogram(dataframe_predictions_modified, "Predictions - Ages", 'Age')
+    display_histogram(dataframe_predictions_modified, "Predictions - CDR Scores", 'CDR')
+    display_histogram(dataframe_predictions_modified, "Predictions - Male Vs Female", 'M/F')
+    display_histogram(dataframe_predictions_modified, "Predictions - MMSE Scores", 'MMSE')
+    display_histogram(dataframe_predictions_modified, "Predictions - MR Delay", 'MR Delay')
+    display_histogram(dataframe_predictions_modified, "Predictions - SES", 'SES')
+    display_histogram(dataframe_predictions_modified, "Predictions - Visits", 'Visit')
+    display_histogram(dataframe_predictions_modified, "Predictions - Groups", 'Group')
+    display_histogram(dataframe_predictions_modified, "Predictions - Nondemented Confidence", 'confidence(Nondemented)')
+    display_histogram(dataframe_predictions_modified, "Predictions - Demented Confidence", 'confidence(Demented)')
+    display_histogram(dataframe_predictions_modified, "Predictions - Converted Confidence", 'confidence(Converted)')
+    display_histogram(dataframe_predictions_modified, "Predictions - Predictions (Groups)", 'prediction(Group)')
     """
     # Displaying Initial Datasets
     display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, False, False)
