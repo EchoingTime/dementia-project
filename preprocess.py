@@ -235,7 +235,7 @@ def run ():
     dataframe_predictions_modified = drop_duplicates(dataframe_predictions_modified)
 
     print(f"After Duplication Drop: No Duplications in Oasis Longitudinal Demographics Dataset: {count_duplicated_rows(dataframe_oasis_modified)}\n"
-          f"\nNumber of Duplicated Rows in Predictions Dataset: {count_duplicated_rows(dataframe_predictions_modified)}\n")
+          f"\nAfter Duplication Drop: Number of Duplicated Rows in Predictions Dataset: {count_duplicated_rows(dataframe_predictions_modified)}\n")
 
     # Dealing with Outliers
     # Question to consider: Does the Dataset have outliers worth removing?
