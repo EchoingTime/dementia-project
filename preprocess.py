@@ -204,10 +204,10 @@ def run ():
     #               Demented            1
     #               Converted           0
     dataframe_oasis_modified['Group'] = dataframe_oasis_modified['Group'].replace({'Nondemented': 2, 'Demented': 1, 'Converted': 0})
-    dataframe_oasis_modified['M/F'] = dataframe_oasis_modified['Group'].replace({'M': 1, 'F': 0})
+    dataframe_oasis_modified['M/F'] = dataframe_oasis_modified['M/F'].replace({'M': 1, 'F': 0})
     dataframe_predictions_modified['Group'] = dataframe_predictions_modified['Group'].replace({'Nondemented': 2, 'Demented': 1, 'Converted': 0})
     dataframe_predictions_modified['prediction(Group)'] = dataframe_predictions_modified['prediction(Group)'].replace({'Nondemented': 2, 'Demented': 1, 'Converted': 0})
-    dataframe_predictions_modified['M/F'] = dataframe_predictions_modified['Group'].replace({'M': 1, 'F': 0})
+    dataframe_predictions_modified['M/F'] = dataframe_predictions_modified['M/F'].replace({'M': 1, 'F': 0})
 
     # Dropping NaN Rows: SES column had 19 NaN values and MMSE had 2
     print(f"Before NaN Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n\n{count_nan(dataframe_oasis)}\n")
