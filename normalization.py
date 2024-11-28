@@ -1,4 +1,4 @@
-import sklearn.preprocessing as sk
+import numpy as np
 
 """
 Processing technique: Scaling Normalization 
@@ -10,21 +10,23 @@ Date: 2024-10-22
 """
 
 def min_max(data):
-    scaler = sk.MinMaxScaler()
-    normalized_data = scaler.fit_transform(data)
-    print(normalized_data)
+    data_min = np.min(data, axis=0)
+    data_max = np.max(data, axis=0)
+    normalized_data = (data - data_min) / (data_max - data_min)
+    print("Min-Max Normalized Data:\n", normalized_data)
 
 
 def standard_scale(data):
-    scaler = sk.StandardScaler()
-    normalized_data = scaler.fit_transform(data)
-    print(normalized_data)
+    data_mean = np.mean(data, axis=0)
+    data_std = np.std(data, axis=0)
+    scaled_data = (data - data_mean) / data_std
+    return scaled_data
 
 
 def normalize_scale(data):
-    scaler = sk.Normalizer()
-    normalized_data = scaler.fit_transform(data)
-    print(normalized_data)
+    l2_norm = np.linalg.norm(data, axis=1, keepdims=True)
+    normalized_data = data / l2_norm
+    print("L2 Normalized Data:\n", normalized_data)
 
 
 def run(data):
