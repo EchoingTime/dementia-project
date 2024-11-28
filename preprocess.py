@@ -53,6 +53,7 @@ def display_data (descriptor, dataset, display, extra_info):
         print(f"\nExtra Information on {descriptor} \n\n {dataset.describe()}\n\n(Rows, Columns) = {dataset.shape}\n")
 
 
+# Dropping Columns Deemed Unuseful
 def drop_column (dataset, column):
     """
     Accepts a pandas Dataframe and removes the specified column from the dataset.
@@ -168,7 +169,13 @@ def sample_without_replacement (dataset, sample):
     return data_copy
 
 
+# Where the program is run to preprocess and clean the datasets
+# There is no function for categorical to numerical values --> It is taken care of in the run function for simplicity
 def run ():
+    """
+    Runs the preprocessing pipeline!
+    :return: A modified Oasis Longitudinal Demographics Dataset and a Predictions Dataset
+    """
     # Oasis Longitudinal Demographics and Predictions Datasets
     dataframe_oasis = load_data("oasis_longitudinal_demographics.xlsx")
     dataframe_predictions = load_data("Predictions.xlsx")
