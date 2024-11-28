@@ -42,7 +42,7 @@ if __name__ == '__main__':
     lift = dataMiningModels.calculate_lift(binary_data, [0], [1])
     print(f"Support: {support}, Confidence: {confidence}, Lift: {lift}")
 
-    # Decision Tree
+    # Decision Tree (we need to think about the target, 'Group' is just an example)
     print("\nDecision Tree:  ")
 
     # Extract features
