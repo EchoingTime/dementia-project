@@ -19,6 +19,11 @@ if __name__ == '__main__':
     # Normalization
     oasis_normalized, predictions_normalized = norm.run(dataframe_oasis_modified, dataframe_predictions_modified)
 
+    # Data Mining
+    """
+    Once ready we can do a run function in daataMiningModels and then remove this green commenting
+    """
+
     # Verifying column names
     print("Columns in dataframe_oasis_modified:", dataframe_oasis_modified.columns)
 
