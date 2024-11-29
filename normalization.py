@@ -9,6 +9,7 @@ Professor: Professor Wei
 Date: 2024-10-22
 """
 
+
 # (Not Utilized)
 def min_max(data):
     data_min = np.min(data, axis=0)
@@ -17,18 +18,18 @@ def min_max(data):
     print("Min-Max Normalized Data:\n", normalized_data)
 
 
-# (Utilized) AI used in helping generate comments and simplify breakdown for users
-def standard_scale (data):
+# (Utilized)
+def standard_scale(data):
     """
     Performs standardization of the dataset
     :param data: pandas DataFrame
     :return: A standardized pandas DataFrame
     """
     # Computing the dataset's mean in the form of a vector
-    data_mean = np.mean(data, axis=0) # axis = 0 represents mean across rows for every given column
+    data_mean = np.mean(data, axis=0)  # axis = 0 represents mean across rows for every given column
 
     # Computing the dataset's standard deviation in the form of a vector
-    data_std = np.std(data, axis=0) # For finding the variability of the data along each column
+    data_std = np.std(data, axis=0)  # For finding the variability of the data along each column
 
     # Takes the original dataset and subtracts it by the mean, aka centering
     # Then divides data by the standard deviation, aka scaling
@@ -47,7 +48,7 @@ def normalize_scale(data):
 
 
 # Where the functions are ran
-def run (df_oasis_modified, df_predictions_modified):
+def run(df_oasis_modified, df_predictions_modified):
     """
     Runs the normalization phase
     :param df_oasis_modified: pandas DataFrame containing oasis data

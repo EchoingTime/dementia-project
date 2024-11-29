@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     # Data Mining
     """
-    Once ready we can do a run function in daataMiningModels and then remove this green commenting
+    Once ready we can do a run function in dataMiningModels and then remove this green commenting
     """
 
     # Verifying column names
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     print("\nDecision Tree:  ")
 
     # Extract features
-    X = dataframe_oasis_modified.select_dtypes(include=[np.number]).drop(columns=['Group'],errors='ignore').to_numpy()
+    X = dataframe_oasis_modified.select_dtypes(include=[np.number]).drop(columns=['Group'], errors='ignore').to_numpy()
     # Extract target variable
     y = dataframe_oasis_modified['Group'].to_numpy(dtype=int)  # Can replace '' with any other target column
 
@@ -67,4 +67,4 @@ if __name__ == '__main__':
     dataframe_oasis_modified.to_csv("oasis_results.csv", index=False)
     dataframe_predictions_modified.to_csv("predictions_results.csv", index=False)
     print("\nResults saved to 'oasis_results.csv' and 'predictions_results.csv'")
-
+    print("\n")
