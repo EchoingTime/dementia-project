@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="More Code Format Changes (Spaces and uppercase variables to lowercase)" />
+    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="Updated README.nd with project description, objective, research questions, datasets' terminology, and information taken from the course's description of Dementia Classification and Prediction.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,8 +103,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
-        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PY-242.21829.153" />
+        <option value="bundled-python-sdk-464836ebc622-b74155a9e76b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.21829.153" />
       </set>
     </attachedChunks>
   </component>
@@ -125,6 +127,7 @@
       <workItem from="1732788442888" duration="5010000" />
       <workItem from="1732890498365" duration="2144000" />
       <workItem from="1732892670290" duration="383000" />
+      <workItem from="1732920833671" duration="1508000" />
     </task>
     <task id="LOCAL-00001" summary="__init__.py Update">
       <option name="closed" value="true" />
@@ -366,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732892945013</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Updated README.nd with project description, objective, research questions, datasets' terminology, and information taken from the course's description of Dementia Classification and Prediction.">
+      <option name="closed" value="true" />
+      <created>1732901699314</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1732901699314</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,8 +385,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added Predictions Dataset to be loaded and displayed" />
-    <MESSAGE value="Some format Updates" />
     <MESSAGE value="Added drop_nan_rows (dataset) function" />
     <MESSAGE value="Added replace_nan_with_median (dataset, column) function. However, not utilizing" />
     <MESSAGE value="Added count_duplicated_rows function. No duplicated rows in both datasets" />
@@ -399,7 +408,9 @@
     <MESSAGE value="Format Change" />
     <MESSAGE value="Code Format Changes" />
     <MESSAGE value="More Code Format Changes (Spaces and uppercase variables to lowercase)" />
-    <option name="LAST_COMMIT_MESSAGE" value="More Code Format Changes (Spaces and uppercase variables to lowercase)" />
+    <MESSAGE value="Format Changes" />
+    <MESSAGE value="Updated README.nd with project description, objective, research questions, datasets' terminology, and information taken from the course's description of Dementia Classification and Prediction." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated README.nd with project description, objective, research questions, datasets' terminology, and information taken from the course's description of Dementia Classification and Prediction." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dementia_project$main_py.coverage" NAME="main.py Coverage Results" MODIFIED="1732792278047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

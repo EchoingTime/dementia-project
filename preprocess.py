@@ -232,7 +232,7 @@ def run():
     print(
         f"After NaN Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n"
         f"\n{count_nan(dataframe_oasis_modified)}\n"
-        f"\nNo NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions_modified)}\n")
+        f"\nAfter NaN Drop: Number of NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions_modified)}\n")
     # No NaNs in Predictions Dataset
 
     # Dropping Duplicated Rows
@@ -284,8 +284,8 @@ def run():
     display_histogram(dataframe_predictions_modified, "Predictions - Predictions (Groups)", 'prediction(Group)')
     """
     # Displaying Initial Datasets
-    display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, False, False)
-    display_data("Initial Predictions", dataframe_predictions, False, False)
+    display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, True, False)
+    display_data("Initial Predictions", dataframe_predictions, True, False)
 
     # Displaying Modified Dataset
     display_data("Modified Oasis Longitudinal Demographics", dataframe_oasis_modified, True, True)
