@@ -80,14 +80,14 @@ def convert_subject_id(subject_id):
     return int(subject_id[5:])
 
 
-# Rounding confidence for easier viewing
-def round_confidence(confidence):
+# Rounding values for easier viewing
+def round_values(value):
     """
-    Rounds the confidence value to the 4 decimal places.
-    :param confidence: Confidence value to be rounded
-    :return: The rounded confidence value
+    Rounds the value to 4 decimal places.
+    :param value: Value to be rounded
+    :return: The rounded value
     """
-    return round(confidence, 4)
+    return round(value, 4)
 
 
 # Useful to see where the NaN values are in what column
@@ -236,6 +236,9 @@ def run():
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
     dataframe_oasis_modified['M/F'] = dataframe_oasis_modified['M/F'].replace({'M': 1, 'F': 0})
     dataframe_oasis_modified['Subject ID'] = dataframe_oasis_modified['Subject ID'].apply(convert_subject_id)
+    dataframe_oasis_modified['eTIV'] = dataframe_oasis_modified['eTIV'].apply(round_values)
+    dataframe_oasis_modified['nWBV'] = dataframe_oasis_modified['nWBV'].apply(round_values)
+    dataframe_oasis_modified['ASF'] = dataframe_oasis_modified['ASF'].apply(round_values)
 
     dataframe_predictions['Group'] = dataframe_predictions['Group'].replace(
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
@@ -243,9 +246,9 @@ def run():
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
     dataframe_predictions['M/F'] = dataframe_predictions['M/F'].replace({'M': 1, 'F': 0})
     dataframe_predictions['Subject ID'] = dataframe_predictions['Subject ID'].apply(convert_subject_id)
-    dataframe_predictions['confidence(Nondemented)'] = dataframe_predictions['confidence(Nondemented)'].apply(round_confidence)
-    dataframe_predictions['confidence(Demented)'] = dataframe_predictions['confidence(Demented)'].apply(round_confidence)
-    dataframe_predictions['confidence(Converted)'] = dataframe_predictions['confidence(Converted)'].apply(round_confidence)
+    dataframe_predictions['confidence(Nondemented)'] = dataframe_predictions['confidence(Nondemented)'].apply(round_values)
+    dataframe_predictions['confidence(Demented)'] = dataframe_predictions['confidence(Demented)'].apply(round_values)
+    dataframe_predictions['confidence(Converted)'] = dataframe_predictions['confidence(Converted)'].apply(round_values)
 
 
     # Dropping NaN Rows: SES column had 19 NaN values and MMSE had 2
