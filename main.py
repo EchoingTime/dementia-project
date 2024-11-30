@@ -2,6 +2,7 @@ import numpy as np
 import preprocess as p
 import normalization as norm
 import dataMiningModels
+import sys
 
 """
 Used to run project's programs
@@ -68,3 +69,4 @@ if __name__ == '__main__':
     dataframe_predictions_modified.to_csv("predictions_results.csv", index=False)
     print("\nResults saved to 'oasis_results.csv' and 'predictions_results.csv'")
     print("\n")
+    sys.exit()
