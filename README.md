@@ -41,28 +41,29 @@ clinical and demographic data.
 
 This section was used alongside AI to help with finding out aberrations.
 
-1) Group --> Represents whether a patient is classified as Nondemented (2), demented (1), or converted (0). Healthy 
+1) Subject ID --> ID of Patient
+2) Group --> Represents whether a patient is classified as Nondemented (2), demented (1), or converted (0). Healthy 
 patients are marked with 2, patients diagnosed with dementia are marked with 1, and patients who transitioned to 
 demented between visits are marked with 0. 
-2) Visit --> Time data was recorded as patients can have several visits. Easy to see how many visits a patient had.
-3) MR Delay --> Number of days between visit and MRI scan
-4) M/F --> Gender of patient. M means Male and F means Female
-5) Age --> Age of patient at the time of visit. Important for dementia diagnosis
-6) EDUC --> Patient's years of education. Good for cognitive reservation as it slows rate of cognitive decline
-7) SES --> Socioeconomic status of patient such as income, occupation, etc. Can affect patient's physical and cognitive 
+3) Visit --> Time data was recorded as patients can have several visits. Easy to see how many visits a patient had.
+4) MR Delay --> Number of days between visit and MRI scan
+5) M/F --> Gender of patient. M means Male and F means Female
+6) Age --> Age of patient at the time of visit. Important for dementia diagnosis
+7) EDUC --> Patient's years of education. Good for cognitive reservation as it slows rate of cognitive decline
+8) SES --> Socioeconomic status of patient such as income, occupation, etc. Can affect patient's physical and cognitive 
 health
-8) MMSE --> Mini-Mental State Examination score. Assesses cognitive function, ranging from 0 to 30. The lower the score
+9) MMSE --> Mini-Mental State Examination score. Assesses cognitive function, ranging from 0 to 30. The lower the score
 means worse cognitive impairment.
-9) CDR --> Clinical Dementia Rating scale --> Quantify the severity of dementia symptoms. 0 (no dementia) to 3 
+10) CDR --> Clinical Dementia Rating scale --> Quantify the severity of dementia symptoms. 0 (no dementia) to 3 
 (severe dementia)
-10) eTIV --> Estimate Total Intracranial Volume. Total volume of brain and skull. Changes in volume mark 
+11) eTIV --> Estimate Total Intracranial Volume. Total volume of brain and skull. Changes in volume mark 
 neurodegenerative diseases.
-11) nWBV --> Normalized Whole Brain Volume. Total brain volume normalized to the eTIV. Good for seeing individual 
+12) nWBV --> Normalized Whole Brain Volume. Total brain volume normalized to the eTIV. Good for seeing individual 
 differences in brain size.
-12) ASF --> Atlas Scaling Factor. Measure used in neuroimaging studies to account for differences in scaling and the 
+13) ASF --> Atlas Scaling Factor. Measure used in neuroimaging studies to account for differences in scaling and the 
 size of brain images.
-13) Cluster --> Cluster assignment that can help with showing patterns of brain activity, scores, etc.
-14) Predictions --> Predicting demented, nondemented, or converted based on modeling/classification algorithm.
+14) Cluster --> Cluster assignment that can help with showing patterns of brain activity, scores, etc.
+15) Predictions --> Predicting demented, nondemented, or converted based on modeling/classification algorithm.
 
 ### Predictions Dataset
 
@@ -72,12 +73,13 @@ size of brain images.
 4) MMSE
 5) MR Delay
 6) SES
-7) Visit
-8) Group --> Label
-9) confidence(Nondemented) --> Model's confidence that a patient is non-demented.
-10) confidence(Demented) --> Model's confidence that a patient is demented.
-11) confidence(Converted) --> Model's confidence that the patient is converted.
-12) confidence(Group) --> Confidence on predicting a group.
+7) Subject ID
+8) Visit
+9) Group --> Label
+10) confidence(Nondemented) --> Model's confidence that a patient is non-demented.
+11) confidence(Demented) --> Model's confidence that a patient is demented.
+12) confidence(Converted) --> Model's confidence that the patient is converted.
+13) confidence(Group) --> Confidence on predicting a group.
 
 ### The Rest of the Information Was Taken From The Course's Description of Dementia Classification and Prediction
 
