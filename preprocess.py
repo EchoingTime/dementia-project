@@ -80,6 +80,16 @@ def convert_subject_id(subject_id):
     return int(subject_id[5:])
 
 
+# Rounding confidence for easier viewing
+def round_confidence(confidence):
+    """
+    Rounds the confidence value to the 4 decimal places.
+    :param confidence: Confidence value to be rounded
+    :return: The rounded confidence value
+    """
+    return round(confidence, 4)
+
+
 # Useful to see where the NaN values are in what column
 def count_nan(dataset):
     """
@@ -233,6 +243,10 @@ def run():
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
     dataframe_predictions['M/F'] = dataframe_predictions['M/F'].replace({'M': 1, 'F': 0})
     dataframe_predictions['Subject ID'] = dataframe_predictions['Subject ID'].apply(convert_subject_id)
+    dataframe_predictions['confidence(Nondemented)'] = dataframe_predictions['confidence(Nondemented)'].apply(round_confidence)
+    dataframe_predictions['confidence(Demented)'] = dataframe_predictions['confidence(Demented)'].apply(round_confidence)
+    dataframe_predictions['confidence(Converted)'] = dataframe_predictions['confidence(Converted)'].apply(round_confidence)
+
 
     # Dropping NaN Rows: SES column had 19 NaN values and MMSE had 2
     print(
