@@ -70,6 +70,16 @@ def drop_column(dataset, column):
     return data_copy
 
 
+# Removes the first 5 characters and then converts the rest to int
+def convert_subject_id(subject_id):
+    """
+    Removes the first 5 characters and then converts the rest to int.
+    :param subject_id: Specific Subject ID to Convert
+    :return: Converted Subject ID
+    """
+    return int(subject_id[5:])
+
+
 # Useful to see where the NaN values are in what column
 def count_nan(dataset):
     """
@@ -182,11 +192,9 @@ def run():
     dataframe_predictions = load_data("Predictions.xlsx")
 
     # Dropping columns not useful to our study:
-    # Subject ID, MRI ID, and Hand in Oasis Longitudinal Demographics dataset and Subject ID in Predictions dataset
-    dataframe_oasis_modified = drop_column(dataframe_oasis, "Subject ID")
-    dataframe_oasis_modified = drop_column(dataframe_oasis_modified, "MRI ID")
+    # MRI ID and Hand in Oasis Longitudinal Demographics dataset
+    dataframe_oasis_modified = drop_column(dataframe_oasis, "MRI ID")
     dataframe_oasis_modified = drop_column(dataframe_oasis_modified, "Hand")
-    dataframe_predictions_modified = drop_column(dataframe_predictions, "Subject ID")
 
     # Handling future error given: Set option to opt into the new replace behavior
     pd.set_option('future.no_silent_downcasting', True)
@@ -200,6 +208,7 @@ def run():
     #       M/F
     #               M (Male)            1
     #               F (Female)          0
+    #       Subject ID dropping first 5 characters and leading zeros
     #   Predictions Dataset
     #       Group
     #               Nondemented         2
@@ -212,14 +221,18 @@ def run():
     #               Nondemented         2
     #               Demented            1
     #               Converted           0
+    #       Subject ID dropping first 5 characters and leading zeros
     dataframe_oasis_modified['Group'] = dataframe_oasis_modified['Group'].replace(
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
     dataframe_oasis_modified['M/F'] = dataframe_oasis_modified['M/F'].replace({'M': 1, 'F': 0})
-    dataframe_predictions_modified['Group'] = dataframe_predictions_modified['Group'].replace(
+    dataframe_oasis_modified['Subject ID'] = dataframe_oasis_modified['Subject ID'].apply(convert_subject_id)
+
+    dataframe_predictions['Group'] = dataframe_predictions['Group'].replace(
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
-    dataframe_predictions_modified['prediction(Group)'] = dataframe_predictions_modified['prediction(Group)'].replace(
+    dataframe_predictions['prediction(Group)'] = dataframe_predictions['prediction(Group)'].replace(
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
-    dataframe_predictions_modified['M/F'] = dataframe_predictions_modified['M/F'].replace({'M': 1, 'F': 0})
+    dataframe_predictions['M/F'] = dataframe_predictions['M/F'].replace({'M': 1, 'F': 0})
+    dataframe_predictions['Subject ID'] = dataframe_predictions['Subject ID'].apply(convert_subject_id)
 
     # Dropping NaN Rows: SES column had 19 NaN values and MMSE had 2
     print(
@@ -232,7 +245,7 @@ def run():
     print(
         f"After NaN Drop: Number of NaNs in Oasis Longitudinal Demographics Dataset\n"
         f"\n{count_nan(dataframe_oasis_modified)}\n"
-        f"\nAfter NaN Drop: Number of NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions_modified)}\n")
+        f"\nAfter NaN Drop: Number of NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions)}\n")
     # No NaNs in Predictions Dataset
 
     # Dropping Duplicated Rows
@@ -241,10 +254,10 @@ def run():
         f"{count_duplicated_rows(dataframe_oasis_modified)}\n")
     print(
         f"Before Duplication Drop: Number of Duplicated Rows in Predictions Dataset: "
-        f"{count_duplicated_rows(dataframe_predictions_modified)}\n")
+        f"{count_duplicated_rows(dataframe_predictions)}\n")
 
     dataframe_oasis_modified = drop_duplicates(dataframe_oasis_modified)
-    dataframe_predictions_modified = drop_duplicates(dataframe_predictions_modified)
+    dataframe_predictions_modified = drop_duplicates(dataframe_predictions)
 
     print(
         f"After Duplication Drop: No Duplications in Oasis Longitudinal Demographics Dataset: "
@@ -284,8 +297,8 @@ def run():
     display_histogram(dataframe_predictions_modified, "Predictions - Predictions (Groups)", 'prediction(Group)')
     """
     # Displaying Initial Datasets
-    display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, True, False)
-    display_data("Initial Predictions", dataframe_predictions, True, False)
+    display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, False, False)
+    display_data("Initial Predictions", dataframe_predictions, False, False)
 
     # Displaying Modified Dataset
     display_data("Modified Oasis Longitudinal Demographics", dataframe_oasis_modified, True, True)
