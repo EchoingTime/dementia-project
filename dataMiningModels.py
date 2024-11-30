@@ -33,8 +33,6 @@ def manual_kmeans(data, k=3, max_iter=100):
 
 # Association Rule Mining. Using association rules for patient segmentation
 # can encounter existing relationships and patterns among patients with related conditions.
-
-
 def calculate_support(dataset, itemset):
     """Calculate support for an itemset."""
     return np.mean(np.all(dataset[:, itemset], axis=1))
@@ -57,7 +55,6 @@ def calculate_lift(dataset, antecedent, consequent):
 # Decision Tree Functions. Construct a decision tree
 # to categorize data by predicting the possibility of a patient developing dementia based on clinical
 # and demographic data.
-
 class DecisionTreeNode:
     """Class for a decision tree node."""
 
@@ -116,3 +113,56 @@ def predict_decision_tree(tree, x):
         return predict_decision_tree(tree.left, x)
     else:
         return predict_decision_tree(tree.right, x)
+
+
+def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normalized):
+    """
+    Runs the data mining techniques and generates decision trees.
+    :param dataframe_oasis_modified: Oasis Dataset DataFrame
+    :param dataframe_predictions_modified: Predictions Dataset DataFrame
+    :param oasis_normalized: Normalized Oasis Dataset DataFrame
+    :return: None
+    """
+    # Verifying column names
+    print("Columns in dataframe_oasis_modified:", dataframe_oasis_modified.columns)
+
+    # Clustering
+    print("\n Clustering Results: ")
+    clusters, centroids = manual_kmeans(oasis_normalized, k=3)
+    dataframe_oasis_modified['Cluster'] = clusters  # Add clusters to the dataframe
+    print(f"Cluster Assignments:\n{dataframe_oasis_modified[['Cluster']].value_counts()}")
+    print(f"Cluster Centroids:\n{centroids}")
+
+    # Association Rule Mining
+    print("\nAssociation Rule Mining: ")
+    binary_data = (oasis_normalized > 0).astype(int)  # normalized data to binary for mining
+    support = calculate_support(binary_data, [0])
+    confidence = calculate_confidence(binary_data, [0], [1])
+    lift = calculate_lift(binary_data, [0], [1])
+    print(f"Support: {support}, Confidence: {confidence}, Lift: {lift}")
+
+    # Decision Tree (we need to think about the target, 'Group' is just an example)
+    print("\nDecision Tree:  ")
+
+    # Extract features
+    X = dataframe_oasis_modified.select_dtypes(include=[np.number]).drop(columns=['Group'], errors='ignore').to_numpy()
+    # Extract target variable
+    y = dataframe_oasis_modified['Group'].to_numpy(dtype=int)  # Can replace '' with any other target column
+
+    # Validate shapes and data types
+    print("Feature matrix shape:", X.shape)
+    print("Target variable shape:", y.shape)
+
+    tree = build_decision_tree(X, y)
+    predictions = [predict_decision_tree(tree, x) for x in X]
+    dataframe_oasis_modified['Predictions'] = predictions
+    print(f"Decision Tree Predictions:\n{dataframe_oasis_modified[['Predictions']].value_counts()}")
+
+    # Evaluate the model
+    accuracy = np.mean(predictions == y)
+    print(f"Decision Tree Accuracy: {accuracy:.2f}")
+
+    # Save the results
+    dataframe_oasis_modified.to_csv("oasis_results.csv", index=False)
+    dataframe_predictions_modified.to_csv("predictions_results.csv", index=False)
+    print("\nResults saved to 'oasis_results.csv' and 'predictions_results.csv'\n")
