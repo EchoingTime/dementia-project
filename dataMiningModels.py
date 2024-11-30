@@ -1,4 +1,5 @@
 import numpy as np
+from matplotlib import pyplot as plt
 
 """
 Phase Three
@@ -133,12 +134,41 @@ def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normaliz
     print(f"Cluster Assignments:\n{dataframe_oasis_modified[['Cluster']].value_counts()}")
     print(f"Cluster Centroids:\n{centroids}")
 
+    # Risk Factor Analysis
+    print("\nCluster Risk Factor Analysis:")
+    cluster_summary = dataframe_oasis_modified.groupby('Cluster').mean()
+    print(cluster_summary)
+
+    # Visualization: Plot Clusters (Age vs MMSE)
+    plt.figure(figsize=(8, 6))
+    for cluster in range(3):  # Adjust for the number of clusters
+        cluster_data = dataframe_oasis_modified[dataframe_oasis_modified['Cluster'] == cluster]
+        plt.scatter(
+            cluster_data['Age'], cluster_data['MMSE'], label=f'Cluster {cluster}', alpha=0.6
+        )
+    plt.title("Cluster Analysis: Age vs MMSE")
+    plt.xlabel("Age (Normalized)")
+    plt.ylabel("MMSE (Normalized)")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    # Bar Chart: Proportion of Demented/Converted Patients in Each Cluster
+    group_proportions = dataframe_oasis_modified.groupby('Cluster')['Group'].value_counts(normalize=True).unstack()
+    group_proportions.plot(kind='bar', stacked=True, figsize=(8, 6), alpha=0.8)
+    plt.title("Group Proportions by Cluster")
+    plt.xlabel("Cluster")
+    plt.ylabel("Proportion")
+    plt.legend(title="Group", labels=['Nondemented', 'Demented', 'Converted'])
+    plt.grid(axis='y')
+    plt.show()
+
     # Association Rule Mining
-    print("\nAssociation Rule Mining: ")
-    binary_data = (oasis_normalized > 0).astype(int)  # normalized data to binary for mining
-    support = calculate_support(binary_data, [0])
-    confidence = calculate_confidence(binary_data, [0], [1])
-    lift = calculate_lift(binary_data, [0], [1])
+    print("\nAssociation Rule Mining:")
+    binary_data = (dataframe_oasis_modified[['Age', 'MMSE', 'CDR']] > 0.5).astype(int)
+    support = calculate_support(binary_data.values, [0])
+    confidence = calculate_confidence(binary_data.values, [0], [1])
+    lift = calculate_lift(binary_data.values, [0], [1])
     print(f"Support: {support}, Confidence: {confidence}, Lift: {lift}")
 
     # Decision Tree (we need to think about the target, 'Group' is just an example)
