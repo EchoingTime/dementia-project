@@ -47,10 +47,14 @@ def display_data(descriptor, dataset, display, extra_info):
     pd.set_option('display.max_columns', None)
 
     if display:
-        print(f"\n{descriptor} Dataset Information\n\n{dataset}")
+        print(f"{descriptor} Dataset Information\n\n{dataset}")
+    else:
+        print(f"{descriptor} Dataset: Display = FALSE\n")
 
     if extra_info:
         print(f"\nExtra Information on {descriptor} \n\n {dataset.describe()}\n\n(Rows, Columns) = {dataset.shape}\n")
+    else:
+        print(f"\n{descriptor} Dataset: Display Extra Information = FALSE\n")
 
 
 # Dropping Columns Deemed Unuseful
@@ -196,17 +200,28 @@ def run():
     Runs the preprocessing pipeline!
     :return: A modified Oasis Longitudinal Demographics Dataset and a Predictions Dataset
     """
+
+    print(f"\nPreprocessing Data\n")
+
+    print(f"-----------------------------------------------------------------------------------------------------\n")
+
     # Oasis Longitudinal Demographics and Predictions Datasets
     dataframe_oasis = load_data("oasis_longitudinal_demographics.xlsx")
     dataframe_predictions = load_data("Predictions.xlsx")
+
+    print(f"Dropping MRI ID and Hand Columns in Oasis Longitudinal Demographics Dataset.")
 
     # Dropping columns not useful to our study:
     # MRI ID and Hand in Oasis Longitudinal Demographics dataset
     dataframe_oasis_modified = drop_column(dataframe_oasis, "MRI ID")
     dataframe_oasis_modified = drop_column(dataframe_oasis_modified, "Hand")
 
+    dataframe_predictions_modified = dataframe_predictions.copy()
+
     # Handling future error given: Set option to opt into the new replace behavior
     pd.set_option('future.no_silent_downcasting', True)
+
+    print(f"\n-----------------------------------------------------------------------------------------------------\n")
 
     # Converting categorical columns to numerical
     #   Oasis Longitudinal Demographics Dataset
@@ -231,6 +246,20 @@ def run():
     #               Demented            1
     #               Converted           0
     #       Subject ID dropping first 5 characters and leading zeros
+
+    print(f"Converting categorical columns to numerical...\n\n"
+          f"Dataframe Oasis Columns Conversion:\n\n"
+          f"Group: Nondemented as 2, Demented as 1, Converted as 0\\nn"
+          f"M/F: M as 1, F as 0\n\n"
+          f"Subject ID: Applying Conversion to Subject IDs, dropping non-integers and then converting to ints\n\n"
+          f"eTIV, nWBV, and ASF: Rounding 4 decimal places\n\n"
+          f"Dataframe Predictions Columns Conversion:\n\n"
+          f"Group: Nondemented as 2, Demented as 1, Converted as 0\n\n"
+          f"prediction(Group): Nondemented as 2, Demented as 1, Converted as 0\n\n"
+          f"M/F: M as 1, F as 0\n\n"
+          f"Subject ID: Applying Conversion to Subject IDs, dropping non-integers and then converting to ints\n\n"
+          f"confidence(Nondemented), confidence(Demented), and confidence(Converted): Rounding 4 decimal places\n")
+
     dataframe_oasis_modified['Group'] = dataframe_oasis_modified['Group'].replace(
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
     dataframe_oasis_modified['M/F'] = dataframe_oasis_modified['M/F'].replace({'M': 1, 'F': 0})
@@ -239,16 +268,22 @@ def run():
     dataframe_oasis_modified['nWBV'] = dataframe_oasis_modified['nWBV'].apply(round_values)
     dataframe_oasis_modified['ASF'] = dataframe_oasis_modified['ASF'].apply(round_values)
 
-    dataframe_predictions['Group'] = dataframe_predictions['Group'].replace(
+    dataframe_predictions_modified['Group'] = dataframe_predictions_modified['Group'].replace(
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
-    dataframe_predictions['prediction(Group)'] = dataframe_predictions['prediction(Group)'].replace(
+    dataframe_predictions_modified['prediction(Group)'] = dataframe_predictions_modified['prediction(Group)'].replace(
         {'Nondemented': 2, 'Demented': 1, 'Converted': 0})
-    dataframe_predictions['M/F'] = dataframe_predictions['M/F'].replace({'M': 1, 'F': 0})
-    dataframe_predictions['Subject ID'] = dataframe_predictions['Subject ID'].apply(convert_subject_id)
-    dataframe_predictions['confidence(Nondemented)'] = dataframe_predictions['confidence(Nondemented)'].apply(round_values)
-    dataframe_predictions['confidence(Demented)'] = dataframe_predictions['confidence(Demented)'].apply(round_values)
-    dataframe_predictions['confidence(Converted)'] = dataframe_predictions['confidence(Converted)'].apply(round_values)
+    dataframe_predictions_modified['M/F'] = (
+        dataframe_predictions_modified['M/F'].replace({'M': 1, 'F': 0}))
+    dataframe_predictions_modified['Subject ID'] = (
+        dataframe_predictions_modified['Subject ID'].apply(convert_subject_id))
+    dataframe_predictions_modified['confidence(Nondemented)'] = (
+        dataframe_predictions_modified['confidence(Nondemented)'].apply(round_values))
+    dataframe_predictions_modified['confidence(Demented)'] = (
+        dataframe_predictions_modified['confidence(Demented)'].apply(round_values))
+    dataframe_predictions_modified['confidence(Converted)'] = (
+        dataframe_predictions_modified['confidence(Converted)'].apply(round_values))
 
+    print(f"-----------------------------------------------------------------------------------------------------\n")
 
     # Dropping NaN Rows: SES column had 19 NaN values and MMSE had 2
     print(
@@ -264,6 +299,8 @@ def run():
         f"\nAfter NaN Drop: Number of NaNs in Predictions Dataset\n\n{count_nan(dataframe_predictions)}\n")
     # No NaNs in Predictions Dataset
 
+    print(f"-----------------------------------------------------------------------------------------------------\n")
+
     # Dropping Duplicated Rows
     print(
         f"Before Duplication Drop: Number of Duplicated Rows in Oasis Longitudinal Demographics Dataset: "
@@ -273,13 +310,17 @@ def run():
         f"{count_duplicated_rows(dataframe_predictions)}\n")
 
     dataframe_oasis_modified = drop_duplicates(dataframe_oasis_modified)
-    dataframe_predictions_modified = drop_duplicates(dataframe_predictions)
+    dataframe_predictions_modified = drop_duplicates(dataframe_predictions_modified)
 
     print(
         f"After Duplication Drop: No Duplications in Oasis Longitudinal Demographics Dataset: "
         f"{count_duplicated_rows(dataframe_oasis_modified)}\n"
         f"\nAfter Duplication Drop: Number of Duplicated Rows in Predictions Dataset: "
-        f"{count_duplicated_rows(dataframe_predictions_modified)}\n")
+        f"{count_duplicated_rows(dataframe_predictions_modified)}")
+
+    print(f"\n-----------------------------------------------------------------------------------------------------\n")
+
+    print(f"Generating Visuals to spot Outliers and Reveal Data Patterns (Decided not to remove outliers)")
 
     # Dealing with Outliers
     # Question to consider: Does the Dataset have outliers worth removing?
@@ -307,18 +348,31 @@ def run():
     display_histogram(dataframe_predictions_modified, "Predictions - SES", 'SES')
     display_histogram(dataframe_predictions_modified, "Predictions - Visits", 'Visit')
     display_histogram(dataframe_predictions_modified, "Predictions - Groups", 'Group')
+    
     display_histogram(dataframe_predictions_modified, "Predictions - Nondemented Confidence", 'confidence(Nondemented)')
     display_histogram(dataframe_predictions_modified, "Predictions - Demented Confidence", 'confidence(Demented)')
     display_histogram(dataframe_predictions_modified, "Predictions - Converted Confidence", 'confidence(Converted)')
     display_histogram(dataframe_predictions_modified, "Predictions - Predictions (Groups)", 'prediction(Group)')
     """
+
+    print(f"\n-----------------------------------------------------------------------------------------------------"
+          f"\n\nDisplaying Initial Datasets\n")
+
     # Displaying Initial Datasets
     display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, False, False)
     display_data("Initial Predictions", dataframe_predictions, False, False)
 
+    print(f"-----------------------------------------------------------------------------------------------------"
+          f"\n\nDisplaying Modified Dataset\n")
+
     # Displaying Modified Dataset
-    display_data("Modified Oasis Longitudinal Demographics", dataframe_oasis_modified, True, True)
-    display_data("Modified Predictions", dataframe_predictions_modified, True, True)
+    display_data("Modified Oasis Longitudinal Demographics",
+                 dataframe_oasis_modified, False, False)
+    display_data("Modified Predictions", dataframe_predictions_modified, False, False)
+
+    print(f"-----------------------------------------------------------------------------------------------------\n")
+
+    print(f"Displaying Sample Datasets\n")
 
     # Creating Sample Datasets
     sample_size_oasis = math.ceil(dataframe_oasis_modified.shape[0] * 0.05)

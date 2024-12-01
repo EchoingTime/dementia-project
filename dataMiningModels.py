@@ -188,15 +188,20 @@ def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normaliz
     :param oasis_normalized: Normalized Oasis Dataset DataFrame
     :return: None
     """
+
+    print(f"-----------------------------------------------------------------------------------------------------\n")
+
     # Verifying column names
-    print("Columns in dataframe_oasis_modified:", dataframe_oasis_modified.columns)
+    print("Verifying Column Names in dataframe_oasis_modified\n\n", dataframe_oasis_modified.columns)
+
+    print(f"\n-----------------------------------------------------------------------------------------------------")
 
     # Clustering
-    print("\n Clustering Results: ")
+    print("\nClustering Results: ")
     clusters, centroids = manual_kmeans(oasis_normalized, k=3)
     dataframe_oasis_modified['Cluster'] = clusters  # Add clusters to the dataframe
     print(f"Cluster Assignments:\n{dataframe_oasis_modified[['Cluster']].value_counts()}")
-    print(f"Cluster Centroids:\n{centroids}")
+    print(f"\nCluster Centroids:\n{centroids}")
 
     # Risk Factor Analysis
     print("\nCluster Risk Factor Analysis:")
@@ -226,6 +231,8 @@ def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normaliz
     plt.legend(title="Group", labels=['Nondemented', 'Demented', 'Converted'])
     plt.grid(axis='y')
     plt.show()
+
+    print(f"\n-----------------------------------------------------------------------------------------------------")
 
     # Association Rule Mining
     print("\nAssociation Rule Mining:")
@@ -263,6 +270,8 @@ def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normaliz
     else:
         print("No rules met the specified support and confidence thresholds.")
 
+    print(f"\n-----------------------------------------------------------------------------------------------------")
+
     # Decision Tree (we need to think about the target, 'Group' is just an example)
     print("\nDecision Tree:  ")
 
@@ -284,6 +293,8 @@ def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normaliz
     # Evaluate the model
     accuracy = np.mean(predictions == y)
     print(f"Decision Tree Accuracy: {accuracy:.2f}")
+
+    print(f"\n-----------------------------------------------------------------------------------------------------")
 
     # Save the results
     dataframe_oasis_modified.to_csv("oasis_results.csv", index=False)
