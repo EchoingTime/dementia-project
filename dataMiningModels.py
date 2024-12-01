@@ -14,7 +14,6 @@ Date: 2024-11-28
 # Understanding risk factors with data clustering by revealing risk factors among patients in similar clusters,
 # and helping to identify the potential progress of dementia.
 
-
 def manual_kmeans(data, k=3, max_iter=100):
     """KMeans clustering."""
     np.random.seed(42)
@@ -31,6 +30,7 @@ def manual_kmeans(data, k=3, max_iter=100):
         centroids = new_centroids
 
     return cluster_assignments, centroids
+
 
 # Association Rule Mining. Using association rules for patient segmentation
 # can encounter existing relationships and patterns among patients with related conditions.
@@ -183,6 +183,7 @@ def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normaliz
     print("Feature matrix shape:", X.shape)
     print("Target variable shape:", y.shape)
 
+    # Building tree
     tree = build_decision_tree(X, y)
     predictions = [predict_decision_tree(tree, x) for x in X]
     dataframe_oasis_modified['Predictions'] = predictions

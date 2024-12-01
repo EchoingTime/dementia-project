@@ -16,7 +16,6 @@ Professor: Professor Wei
 Date: 2024-10-21
 """
 
-
 # Importing Dataset via utilizing read_excel
 def load_data(file_name):
     """

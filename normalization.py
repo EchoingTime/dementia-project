@@ -9,7 +9,6 @@ Professor: Professor Wei
 Date: 2024-10-22
 """
 
-
 # (Not Utilized)
 def min_max(data):
     data_min = np.min(data, axis=0)
