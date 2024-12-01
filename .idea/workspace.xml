@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="some changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataMiningModels.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataMiningModels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oasis_results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/oasis_results.csv" afterDir="false" />
-    </list>
+    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="some changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,6 +79,9 @@
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />

@@ -3,8 +3,6 @@ from matplotlib import pyplot as plt
 from itertools import combinations
 from collections import defaultdict
 
-
-
 """
 Phase Three
 
@@ -56,6 +54,7 @@ def calculate_lift(dataset, antecedent, consequent):
     confidence = calculate_confidence(dataset, antecedent, consequent)
     return confidence / support_consequent
 
+
 def apriori(binary_data, min_support=0.1):
     num_transactions = len(binary_data)
     item_counts = defaultdict(int)
@@ -90,6 +89,7 @@ def apriori(binary_data, min_support=0.1):
 
     return frequent_itemsets
 
+
 def extract_rules(frequent_itemsets, min_confidence=0.6):
     """
     Extract association rules from frequent itemsets.
@@ -115,6 +115,7 @@ def extract_rules(frequent_itemsets, min_confidence=0.6):
                             'Lift': lift
                         })
     return rules
+
 
 # Decision Tree Functions. Construct a decision tree
 # to categorize data by predicting the possibility of a patient developing dementia based on clinical
@@ -261,7 +262,6 @@ def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normaliz
         plt.show()
     else:
         print("No rules met the specified support and confidence thresholds.")
-
 
     # Decision Tree (we need to think about the target, 'Group' is just an example)
     print("\nDecision Tree:  ")
