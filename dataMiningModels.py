@@ -1,5 +1,9 @@
 import numpy as np
 from matplotlib import pyplot as plt
+from itertools import combinations
+from collections import defaultdict
+
+
 
 """
 Phase Three
@@ -52,6 +56,65 @@ def calculate_lift(dataset, antecedent, consequent):
     confidence = calculate_confidence(dataset, antecedent, consequent)
     return confidence / support_consequent
 
+def apriori(binary_data, min_support=0.1):
+    num_transactions = len(binary_data)
+    item_counts = defaultdict(int)
+
+    # Count individual items
+    for index, transaction in binary_data.iterrows():
+        for col in binary_data.columns:
+            if transaction[col] == 1:
+                item_counts[frozenset([col])] += 1
+
+    # Filter by support
+    frequent_itemsets = {item: count / num_transactions for item, count in item_counts.items() if count / num_transactions >= min_support}
+
+    k = 2
+    while True:
+        # Generate candidate itemsets of size k
+        candidates = combinations(frequent_itemsets.keys(), k)
+        candidate_counts = defaultdict(int)
+        for index, transaction in binary_data.iterrows():
+            transaction_items = set([col for col in binary_data.columns if transaction[col] == 1])
+            for candidate in candidates:
+                if transaction_items.issuperset(set().union(*candidate)):
+                    candidate_counts[frozenset().union(*candidate)] += 1
+
+        # Filter candidates by support
+        new_frequent_itemsets = {item: count / num_transactions for item, count in candidate_counts.items() if count / num_transactions >= min_support}
+        if not new_frequent_itemsets:
+            break
+
+        frequent_itemsets.update(new_frequent_itemsets)
+        k += 1
+
+    return frequent_itemsets
+
+def extract_rules(frequent_itemsets, min_confidence=0.6):
+    """
+    Extract association rules from frequent itemsets.
+    """
+    rules = []
+    for itemset in frequent_itemsets:
+        if len(itemset) > 1:
+            for antecedent in combinations(itemset, len(itemset) - 1):
+                consequent = itemset.difference(antecedent)
+                if consequent:
+                    antecedent_support = frequent_itemsets[frozenset(antecedent)]
+                    rule_support = frequent_itemsets[itemset]
+                    confidence = rule_support / antecedent_support
+                    consequent_support = frequent_itemsets[consequent]
+                    lift = confidence / consequent_support
+
+                    if confidence >= min_confidence:
+                        rules.append({
+                            'Antecedent': antecedent,
+                            'Consequent': consequent,
+                            'Support': rule_support,
+                            'Confidence': confidence,
+                            'Lift': lift
+                        })
+    return rules
 
 # Decision Tree Functions. Construct a decision tree
 # to categorize data by predicting the possibility of a patient developing dementia based on clinical
@@ -165,11 +228,40 @@ def run (dataframe_oasis_modified, dataframe_predictions_modified,oasis_normaliz
 
     # Association Rule Mining
     print("\nAssociation Rule Mining:")
-    binary_data = (dataframe_oasis_modified[['Age', 'MMSE', 'CDR']] > 0.5).astype(int)
-    support = calculate_support(binary_data.values, [0])
-    confidence = calculate_confidence(binary_data.values, [0], [1])
-    lift = calculate_lift(binary_data.values, [0], [1])
-    print(f"Support: {support}, Confidence: {confidence}, Lift: {lift}")
+    # Refined binary conversion for association rule mining
+    dataframe_oasis_modified['MMSE_Risk'] = (dataframe_oasis_modified['MMSE'] < 24).astype(int) # Common clinical threshold for concern
+    dataframe_oasis_modified['CDR_Risk'] = (dataframe_oasis_modified['CDR'] > 0.5).astype(int) # Common clinical threshold for CDR
+    dataframe_oasis_modified['Age_Risk'] = (dataframe_oasis_modified['Age'] > 70).astype(int) # Commonly used age threshold for 'elderly'
+
+    binary_data = dataframe_oasis_modified[['MMSE_Risk', 'CDR_Risk', 'Age_Risk']]
+
+    # Run Apriori and extract rules
+    frequent_itemsets = apriori(binary_data, min_support=0.1)
+    rules = extract_rules(frequent_itemsets, min_confidence=0.6)
+
+    # Print results
+    print("\nFrequent Itemsets:")
+    for itemset, support in frequent_itemsets.items():
+        print(f"Itemset: {itemset}, Support: {support:.2f}")
+
+    print("\nAssociation Rules:")
+    for rule in rules:
+        print(
+            f"Rule: {rule['Antecedent']} -> {rule['Consequent']}, Support: {rule['Support']:.2f}, Confidence: {rule['Confidence']:.2f}, Lift: {rule['Lift']:.2f}")
+
+    # Visualization
+    if rules:
+        feature_labels = ['MMSE_Risk', 'CDR_Risk', 'Age_Risk']  # Adjust based on actual data and rules
+        supports = [rule['Support'] for rule in rules]  # Dynamically compute supports
+        plt.bar(feature_labels, supports, color='skyblue')
+        plt.title("Support of Risk Factors")
+        plt.ylabel("Support")
+        plt.xlabel("Features")
+        plt.ylim(0, 1)
+        plt.show()
+    else:
+        print("No rules met the specified support and confidence thresholds.")
+
 
     # Decision Tree (we need to think about the target, 'Group' is just an example)
     print("\nDecision Tree:  ")
