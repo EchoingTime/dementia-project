@@ -8,7 +8,7 @@ Phase Three
 
 Programmed By: Dante Anzalone, Dustin McDonnell, and Leidy Rojas Huisa
 Course: CSCI 4105: Knowledge Discovery and Data Mining
-Professor: Professor Wei
+Professor: Duo Wei
 Date: 2024-11-28
 """
 
