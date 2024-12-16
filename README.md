@@ -39,7 +39,7 @@ clinical and demographic data.
 
 ### Oasis Longitudinal Demographics Dataset Terminology
 
-This section was used alongside AI to help with finding out aberrations.
+This section was used alongside AI to help with finding out abbreviations.
 
 1) Subject ID --> ID of Patient
 2) Group --> Represents whether a patient is classified as Nondemented (2), demented (1), or converted (0). Healthy 
