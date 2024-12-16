@@ -249,7 +249,7 @@ def run():
 
     print(f"Converting categorical columns to numerical...\n\n"
           f"Dataframe Oasis Columns Conversion:\n\n"
-          f"Group: Nondemented as 2, Demented as 1, Converted as 0\\nn"
+          f"Group: Nondemented as 2, Demented as 1, Converted as 0\n\n"
           f"M/F: M as 1, F as 0\n\n"
           f"Subject ID: Applying Conversion to Subject IDs, dropping non-integers and then converting to ints\n\n"
           f"eTIV, nWBV, and ASF: Rounding 4 decimal places\n\n"
@@ -359,16 +359,16 @@ def run():
           f"\n\nDisplaying Initial Datasets\n")
 
     # Displaying Initial Datasets
-    display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, False, False)
-    display_data("Initial Predictions", dataframe_predictions, False, False)
+    display_data("Initial Oasis Longitudinal Demographics", dataframe_oasis, True, True)
+    display_data("Initial Predictions", dataframe_predictions, True, True)
 
     print(f"-----------------------------------------------------------------------------------------------------"
           f"\n\nDisplaying Modified Dataset\n")
 
     # Displaying Modified Dataset
     display_data("Modified Oasis Longitudinal Demographics",
-                 dataframe_oasis_modified, False, False)
-    display_data("Modified Predictions", dataframe_predictions_modified, False, False)
+                 dataframe_oasis_modified, True, True)
+    display_data("Modified Predictions", dataframe_predictions_modified, True, True)
 
     print(f"-----------------------------------------------------------------------------------------------------\n")
 
@@ -382,7 +382,7 @@ def run():
     sample_predictions = sample_without_replacement(dataframe_predictions_modified, sample_size_predictions)
 
     # Displaying Sample Datasets
-    display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, False, False)
-    display_data("Sample of Predictions", sample_predictions, False, False)
+    display_data("Sample of Oasis Longitudinal Demographics", sample_oasis, True, True)
+    display_data("Sample of Predictions", sample_predictions, True, True)
 
     return dataframe_oasis_modified, dataframe_predictions_modified

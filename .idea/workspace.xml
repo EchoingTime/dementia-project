@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="Added Output Format">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0a79eca7-bff7-4e68-81ff-78b1ac0b8885" name="Changes" comment="Quick Correction" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,9 +79,6 @@
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -133,6 +128,7 @@
       <workItem from="1733541461685" duration="3131000" />
       <workItem from="1733545344668" duration="700000" />
       <workItem from="1733546168860" duration="1167000" />
+      <workItem from="1734381168683" duration="342000" />
     </task>
     <task id="LOCAL-00001" summary="__init__.py Update">
       <option name="closed" value="true" />
@@ -406,7 +402,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733020690496</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Quick Correction">
+      <option name="closed" value="true" />
+      <created>1734381339507</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1734381339507</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,7 +418,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Working on Outliers" />
     <MESSAGE value="Added display_histogram function. Do we have outliers worth removing?" />
     <MESSAGE value="Added sample_without_replacement (dataset, sample) function" />
     <MESSAGE value="Added statement in main.py to view modified Oasis dataset" />
@@ -439,7 +442,8 @@
     <MESSAGE value="some changes" />
     <MESSAGE value="Spacing fixes" />
     <MESSAGE value="Added Output Format" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Output Format" />
+    <MESSAGE value="Quick Correction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Quick Correction" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dementia_project$main_py.coverage" NAME="main.py Coverage Results" MODIFIED="1732792278047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
